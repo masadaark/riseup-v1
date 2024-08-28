@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import DepositTableWebPage from './page/DepositTable.page';
 
 const { Header, Footer, Content } = Layout;
 
@@ -15,7 +16,7 @@ const App: React.FC = () => {
         </Header>
         <Content style={{ padding: '0 50px', marginTop: '16px' }}>
           <Routes>
-            <Route path="/deposit-table" element={<div>Test Page Content</div>} />
+            <Route path="/deposit-table" element={<DepositTableWebPage></DepositTableWebPage>} />
           </Routes>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
