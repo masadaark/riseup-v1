@@ -1,23 +1,27 @@
 import React from 'react';
 import { Layout } from 'antd';
 import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-const { Header, Content, Footer } = Layout;
+const { Header, Footer, Content } = Layout;
 
 const App: React.FC = () => {
-
   return (
     <Layout>
-      <Header style={{ display: 'flex', alignItems: 'center' }}>
-        <div className="demo-logo" />
-        <Navbar></Navbar>
-      </Header>
-      <Content style={{ padding: '' }}>
-        
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>
-        RISE-UP @{new Date().getFullYear()} Mr.Masada
-      </Footer>
+      <Router>
+        <Header style={{ display: 'flex', alignItems: 'center' }}>
+          <div className="demo-logo" />
+          <Navbar />
+        </Header>
+        <Content style={{ padding: '0 50px', marginTop: '16px' }}>
+          <Routes>
+            <Route path="/deposit-table" element={<div>Test Page Content</div>} />
+          </Routes>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>
+          RISE-UP @{new Date().getFullYear()} Mr.Masada
+        </Footer>
+      </Router>
     </Layout>
   );
 };

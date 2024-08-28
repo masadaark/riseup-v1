@@ -7,7 +7,9 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuItem[] = [
     {
-        label: 'ตารางเงินฝาก',
+        label: <a href="/deposit-table" >
+            ตารางเงินฝาก
+        </a>,
         key: '1',
         icon: <TableOutlined />,
     },
@@ -27,6 +29,7 @@ const Navbar: React.FC = () => {
 
     const onClick: MenuProps['onClick'] = (e) => {
         setCurrent(e.key);
+
     };
 
     return <Menu onClick={onClick}
