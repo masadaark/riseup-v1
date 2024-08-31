@@ -5,10 +5,10 @@ import type { TableColumnsType } from 'antd';
 export interface DepositTableInterface {
     key?: React.Key;
     year: number;
-    yearlyDeposit: string;
-    monthlyReturn: string;
-    yearlyReturn: string;
-    balance: string;
+    yearlyDeposit: number;
+    monthlyReturn: number;
+    yearlyReturn: number;
+    balance: number;
 }
 
 const columns: TableColumnsType<DepositTableInterface> = [

@@ -8,9 +8,9 @@ import {
 import dayjs, { Dayjs } from 'dayjs';
 
 export interface DepositFormModel {
-    annual_return: number;
+    annual_return_percent: number;
     monthly_deposit: number;
-    increase_deposit_ratio: number;
+    increase_deposit_percent: number;
     year_data: {
         start_date: Dayjs;
         end_date: Dayjs;
@@ -55,7 +55,7 @@ const FormDepositTable: React.FunctionComponent<{onFinish?:(a:DepositFormModel)=
                 </Form.Item>
                 <Form.Item
                     label="อัตราการเพิ่มเงินออมรายปี (%)"
-                    name="increase_deposit_ratio"
+                    name="increase_deposit_percent"
                 >
                     <Input
                         className='[&::-webkit-inner-spin-button]:appearance-none'
@@ -65,7 +65,7 @@ const FormDepositTable: React.FunctionComponent<{onFinish?:(a:DepositFormModel)=
                 </Form.Item>
                 <Form.Item
                     label="ผลตอบแทนต่อปี (%)"
-                    name="annual_return"
+                    name="annual_return_percent"
                     rules={[{ required: true, message: 'โปรดระบุ ผลตอบแทนต่อปี (%)' }]}
                 >
                     <Input

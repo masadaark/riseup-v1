@@ -19,9 +19,10 @@ const DepositTableWebPage = () => {
                     </FormDepositTable>
                 </div>
                 <div >
-                    <TableDeposit data={DepositLogic.GenerateDepositTableLogic(Number(depositFormValue?.monthly_deposit)
-                        , Number(depositFormValue?.increase_deposit_ratio), Number(depositFormValue?.annual_return),
-                        Number(depositFormValue?.year_data.start_date.format("YYYY")), Number(depositFormValue?.year_data.end_date.format("YYYY")))}></TableDeposit>
+                    <TableDeposit data={DepositLogic.GenerateDepositTableLogic(Number(depositFormValue?.monthly_deposit ?? 0)
+                        , Number(depositFormValue?.increase_deposit_percent ?? 0), Number(depositFormValue?.annual_return_percent ?? 0),
+                        Number(depositFormValue?.year_data.start_date.format("YYYY"))
+                        , Number(depositFormValue?.year_data.end_date.format("YYYY")))}></TableDeposit>
                 </div>
             </div>
         </>
