@@ -5,19 +5,26 @@ import {
     Form,
     Input,
 } from 'antd';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
-interface FormModel {
+export interface DepositFormModel {
     annual_return: number;
     monthly_deposit: number;
-    year_data: any
+    increase_deposit_ratio: number;
+    year_data: {
+        start_date: Dayjs;
+        end_date: Dayjs;
+    }
 }
 
-const FormDepositTable: React.FC = () => {
-    const [form] = Form.useForm<FormModel>();
-
-    const onFinish = (values: FormModel) => {
-        console.log('Form values:', values);
+const FormDepositTable: React.FunctionComponent<{onFinish?:(a:DepositFormModel)=>void}> = ({onFinish}) => {
+    const [form] = Form.useForm<DepositFormModel>();
+    const defaultStartDate = dayjs().add(1, 'year');
+    const defaultEndDate = dayjs().add(2, 'year');
+    const logFinish = (values: DepositFormModel) => {
+        console.log(values);
+        console.log(values.year_data.start_date.format("YYYY"))
+        console.log(values.year_data.end_date.format("YYYY"))
     };
 
     return (
@@ -25,7 +32,13 @@ const FormDepositTable: React.FC = () => {
             <Form
                 form={form}
                 layout="vertical"
-                onFinish={onFinish}
+                onFinish={onFinish ?? logFinish}
+                initialValues={{
+                    year_data: {
+                        start_date: defaultStartDate,
+                        end_date: defaultEndDate
+                    }
+                }}
             >
                 <Form.Item
                     label="เงินออมต่อเดือน"
@@ -41,6 +54,16 @@ const FormDepositTable: React.FC = () => {
                         step="any" />
                 </Form.Item>
                 <Form.Item
+                    label="อัตราการเพิ่มเงินออมรายปี (%)"
+                    name="increase_deposit_ratio"
+                >
+                    <Input
+                        className='[&::-webkit-inner-spin-button]:appearance-none'
+                        style={{ width: "60%", textAlign: "right" }}
+                        type="number"
+                        min={0} />
+                </Form.Item>
+                <Form.Item
                     label="ผลตอบแทนต่อปี (%)"
                     name="annual_return"
                     rules={[{ required: true, message: 'โปรดระบุ ผลตอบแทนต่อปี (%)' }]}
@@ -51,11 +74,25 @@ const FormDepositTable: React.FC = () => {
                         type="number"
                         min={0} />
                 </Form.Item>
-                <Form.Item label="ปีที่เริ่มออม"
-                    name="year_data">
-                    <DatePicker picker="year" style={{ width: "26%" }} defaultValue={dayjs().add(1, 'year')} format={"YYYY"} />
-                    <span style={{ margin: '0 10px' }}>ถึง</span>
-                    <DatePicker picker="year" style={{ width: "26%" }} defaultValue={dayjs().add(2, 'year')} format={"YYYY"} />
+                <Form.Item
+                    label="ปีที่เริ่มออม"
+                    name="year_data"
+                >
+                    <Input.Group compact>
+                        <Form.Item
+                            name={['year_data', 'start_date']}
+                            noStyle
+                        >
+                            <DatePicker picker="year" style={{ width: "26%" }} format={"YYYY"} defaultValue={defaultStartDate} />
+                        </Form.Item>
+                        <span style={{ margin: '0 10px' }}>ถึง</span>
+                        <Form.Item
+                            name={['year_data', 'end_date']}
+                            noStyle
+                        >
+                            <DatePicker picker="year" style={{ width: "26%" }} format={"YYYY"} defaultValue={defaultEndDate} />
+                        </Form.Item>
+                    </Input.Group>
                 </Form.Item>
                 <Form.Item>
                     <div className='flex justify-end' style={{ width: 280 }}>
