@@ -13,27 +13,27 @@ export interface DepositTableInterface {
 
 const columns: TableColumnsType<DepositTableInterface> = [
     {
-        title: 'Year',
+        title: 'ปี (ค.ศ.)',
         dataIndex: 'year',
         width: 100
     },
     {
-        title: 'Yearly Deposit',
+        title: 'เงินฝาก',
         dataIndex: 'yearlyDeposit',
         width: 200,
     },
     {
-        title: 'Monthly Return',
-        dataIndex: 'monthlyReturn',
-        width: 200,
-    },
-    {
-        title: 'Yearly Return',
+        title: 'ผลตอบแทนรายปี',
         dataIndex: 'yearlyReturn',
         width: 200,
     },
     {
-        title: 'Balance',
+        title: 'ผลตอบแทนคิดเป็นเดือน',
+        dataIndex: 'monthlyReturn',
+        width: 200,
+    },
+    {
+        title: 'ยอดเงินสะสม',
         dataIndex: 'balance',
         width: 200,
     }

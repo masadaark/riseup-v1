@@ -54,7 +54,7 @@ const FormDepositTable: React.FunctionComponent<{onFinish?:(a:DepositFormModel)=
                         step="any" />
                 </Form.Item>
                 <Form.Item
-                    label="อัตราการเพิ่มเงินออมรายปี (%)"
+                    label="อัตราการเพิ่มเงินออมรายปี (% คิดจากเงินฝากปีแรก)"
                     name="increase_deposit_percent"
                 >
                     <Input
