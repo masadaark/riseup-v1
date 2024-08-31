@@ -10,6 +10,8 @@ export class DepositLogic {
         startYear: number ,
         endYear: number 
     ) {
-     
+        const data: DepositTableInterface[] = [];
+
+        return data
     }
 }
